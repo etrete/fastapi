@@ -10,7 +10,7 @@ from app.core.database import Base, get_db
 import app.core.database as dbmod
 from app.config.settings import Settings
 from app.models.package import PackageType
-from app.main import app
+from app.core.session import get_session_service
 
 TEST_DATABASE_URL = "mysql+aiomysql://user:password@localhost:3306/delivery_test_db"
 
@@ -57,7 +57,6 @@ class TestSessionServiceMock:
         return
     session_ttl = 3600
 
-from app.core.session import get_session_service
 app.dependency_overrides[get_session_service] = lambda: TestSessionServiceMock()
 
 @pytest_asyncio.fixture(scope="function")

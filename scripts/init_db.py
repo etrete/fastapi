@@ -1,6 +1,5 @@
 import asyncio
 import sys
-from pathlib import Path
 from src.app.core.database import init_db
 from src.app.core.logging import setup_logging
 

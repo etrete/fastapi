@@ -85,7 +85,7 @@ async def get_packages(
         session_id = await session_service.get_or_create_session(request)
         session_service.set_session_cookie(response, session_id)
         result = await package_service.get_user_packages(session_id, filters)
-        logger.info(f"Packages retrieved successfully", extra={"session_id": session_id, "count": len(result.packages)})
+        logger.info("Packages retrieved successfully", extra={"session_id": session_id, "count": len(result.packages)})
         return result
     except Exception as e:
         logger.error(f"Error retrieving packages: {str(e)}")

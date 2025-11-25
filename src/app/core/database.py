@@ -7,7 +7,7 @@ from sqlalchemy.ext.asyncio import (
 from sqlalchemy import select
 
 from app.models.base import Base
-from app.models.package import PackageType, Package
+from app.models.package import PackageType
 from app.config.settings import get_settings
 from app.core.logging import get_logger
 

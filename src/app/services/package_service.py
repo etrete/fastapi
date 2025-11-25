@@ -122,7 +122,7 @@ class PackageService:
     async def get_packages_for_calculation(self, limit: int = 1000) -> List[Package]:
         try:
             query = select(Package).where(
-                Package.calculated == False
+                Package.calculated is False
             ).limit(limit)
             result = await self.db.execute(query)
             return result.scalars().all()

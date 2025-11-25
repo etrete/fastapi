@@ -1,6 +1,6 @@
 import redis.asyncio as redis
 
-from typing import Any, Optional
+from typing import Optional
 
 from app.config.settings import get_settings
 from app.core.logging import get_logger
