@@ -11,6 +11,20 @@ jobs:
     name: Run Tests
     runs-on: ubuntu-latest
     services:
+      mysql:
+        image: mysql:8
+        env:
+          MYSQL_DATABASE: delivery_db
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_USER: user
+          MYSQL_PASSWORD: password
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -pmysecretpassword"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
       redis:
         image: redis:7-alpine
         options: >-
@@ -38,19 +52,15 @@ jobs:
         run: |
           curl -sSL https://install.python-poetry.org | python3 -
           echo "$HOME/.local/bin" >> $GITHUB_PATH
-
       - name: Install dependencies
         run: |
           poetry install --with dev
-
       - name: Lint with Ruff
         run: |
           poetry run ruff check src/ src/tests/
-
       - name: Run tests with pytest
         run: |
           poetry run pytest -v --cov=app --cov-report=xml --cov-report=html
-
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:

@@ -12,7 +12,7 @@ from app.config.settings import Settings
 from app.models.package import PackageType
 from app.core.session import get_session_service
 
-TEST_DATABASE_URL = "mysql+aiomysql://user:password@localhost:3306/delivery_test_db"
+TEST_DATABASE_URL = "mysql+aiomysql://user:password@localhost:3306/delivery_db"
 
 @pytest_asyncio.fixture(autouse=True)
 def patch_session_service(monkeypatch):

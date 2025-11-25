@@ -26,7 +26,7 @@ class Package(Base):
     weight = Column(Float, nullable=False)
     content_value = Column(Float, nullable=False)
     delivery_cost = Column(Float, nullable=True)
-    calculated = Column(Boolean, default=False)
+    calculated = Column(Boolean, default=False, nullable=False)
     
     package_type_id = Column(Integer, ForeignKey("package_types.id"), nullable=False)
     

@@ -6,6 +6,7 @@ from app.models.package import Package, PackageType
 from app.schemas.package import PackageCreate, PackageResponse, PackageListResponse, PackageFilter
 from app.core.database import get_db
 from app.core.logging import get_logger
+from sqlalchemy import false
 
 logger = get_logger(__name__)
 
@@ -121,9 +122,7 @@ class PackageService:
 
     async def get_packages_for_calculation(self, limit: int = 1000) -> List[Package]:
         try:
-            query = select(Package).where(
-                Package.calculated is False
-            ).limit(limit)
+            query = select(Package).where(Package.calculated == false()).limit(limit)
             result = await self.db.execute(query)
             return result.scalars().all()
         except Exception as e:
