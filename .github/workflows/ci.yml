@@ -45,7 +45,7 @@ jobs:
 
       - name: Lint with Ruff
         run: |
-          poetry run ruff check src/ tests/
+          poetry run ruff check src/ src/tests/
 
       - name: Run tests with pytest
         run: |
